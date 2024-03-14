@@ -1,4 +1,4 @@
-<h1>42's Project</h1>
+<h1>Solo web project from 42</h1>
 
 <h2>Objectives</h2>
 <p></p>Create a small web application allowing you to publish basic picture.
