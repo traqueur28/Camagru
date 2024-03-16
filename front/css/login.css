@@ -4,10 +4,12 @@
 	text-decoration: none;
 	list-style: none;
 	box-sizing: border-box;
+	border: none;
 }
 
 body {
 	background: linear-gradient(to bottom, #00FFFF, #CCFF33);
+	background-repeat: no-repeat;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -15,49 +17,54 @@ body {
 }
 
 .wrapper {
-	background: transparent;
+	position: relative;
 	border-radius: 15px;
-	border: 1px solid rgb(0, 0, 0, 0.2);
 	width: 350px;
+	height: 100%;
 	color: white;
-	padding: 20px;
-	backdrop-filter: brightness(90%);
-	/* overflow: hidden; */
+	overflow: hidden;
 }
 
-.wrapper h1 {
-	/* background-color: black; */
+.form-wrapper {
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	top: 50%;
+	transform: translateY(-50%);
+	border-radius: 15px;
+	padding: 10px 15px;
+	backdrop-filter: brightness(90%);
+	transition: 0.4s ease-in-out;
+}
+
+.form-wrapper h1 {
 	font-size: 40px;
 	text-align: center;
 	color: black;
 }
 
-.input-box {
-	/* background-color: red; */
+.form-wrapper .input-box {
 	position: relative;
 	height: 50px;
-	margin: 30px 0;
-	overflow: hidden;
+	margin: 30px 0px;
 }
 
 .input-box input {
-	/* color: black; */
+	background: transparent;
 	width: 100%;
 	height: 100%;
-	background: transparent;
-	border: 2px solid red;
+	border: 2px solid rgb(128, 128, 128, 0.1);
 	border-radius: 30px;
-	/* border: none; */
+	padding: 0px 5%;
 	font-size: 16px;
 	outline: none;
 }
 
 .input-box label {
-	/* background-color: red; */
 	color: black;
 	position: absolute;
 	top: 50%;
-	left: 10%;
+	left: 5%;
 	transform: translateY(-50%);
 	pointer-events: none;
 	outline: none;
@@ -66,30 +73,39 @@ body {
 
 .input-box input:focus~label,
 .input-box input:valid~label {
-	top : -20%;
+	top : -30%;
 }
 
-.wrapper .btn {
-	background: transparent;
-	padding: 0px 10px;
+.form-wrapper .btn {
+	background: rgb(0, 0, 0, 0.15);
+	padding: 0px 20px;
 	height: 40px;
 	border-radius: 40px;
-	border: 2px solid black;
 	font-size: 20px;
 	margin-left: 50%;
-	transform: translateX(-50%);
+	transform: translateX(-60%);
 }
 
-.wrapper .form-wrapper {
-	/* background-color: orange;	 */
-
+.form-wrapper p {
+	padding: 15px 0;
+	font-weight: bold;
 }
 
-.wrapper .register-wrapper {
-	position: absolute;
-	left: 20px;
-	right: 20px;
-	/* width: 90%; */
-	/* border-radius: 30px; */
-	margin-top: 40px;
+.wrapper.active .form-wrapper.login-wrapper {
+	transform: translateY(-100%) translateX(100%);
+	top: 20%;
+	left: 0%;
+	right: -10%;
+}
+
+.wrapper.active .form-wrapper.register-wrapper {
+	top: 50%;
+	left: 0%;
+	right: 0%;
+}
+
+.register-wrapper {
+	top: 100%;
+	left: -100%;
+	right: 120%;
 }
