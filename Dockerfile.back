@@ -1,0 +1,11 @@
+# Utiliser l'image php:8.2-fpm comme image de base
+FROM php:8.2-fpm
+
+# Installer les dépendances nécessaires pour le pilote PostgreSQL
+RUN apt-get update && apt-get install -y libpq-dev
+
+# Installer le pilote PostgreSQL pour PHP
+RUN docker-php-ext-install pdo pdo_pgsql pgsql
+
+# Définir le répertoire de travail
+WORKDIR /var/www/html

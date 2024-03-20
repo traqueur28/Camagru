@@ -9,15 +9,15 @@
 <body>
 	<main class="wrapper">
 		<div class="form-wrapper login-wrapper">
-			<form method="post">
+			<form id="loginForm" method="post">
 				<h1>Login</h1>
 				<div class="input-box">
-					<input id="loginId" type="login" required>
-					<label for="">login</label>
+					<input id="loginId" type="text" required>
+					<label for="loginId">login</label>
 				</div>
 				<div class="input-box">
-					<input id="PasswordIdLogin" type="password" required>
-					<label for="">password</label>
+					<input id="passwordIdLogin" type="password" required>
+					<label for="passwordIdLogin">password</label>
 				</div>
 
 				<button type="submit" class="btn">login</button>
@@ -29,16 +29,16 @@
 			<form method="post">
 				<h1>Register</h1>
 				<div class="input-box">
-					<input id="emailId" type="email" required>
-					<label for="">Email</label>
+					<input id="emailId" type="text" required>
+					<label for="emailId">Email</label>
 				</div>
 				<div class="input-box">
-					<input id="registerId" type="register" required>
-					<label for="">Username</label>
+					<input id="registerId" type="text" required>
+					<label for="registerId">Username</label>
 				</div>
 				<div class="input-box">
-					<input id="PasswordIdRegister" type="password" required>
-					<label for="">password</label>
+					<input id="passwordIdRegister" type="password" required>
+					<label for="passwordIdRegister">password</label>
 				</div>
 				<button type="submit" class="btn">Register</button>
 				<p>Vous avez déjà un compte ? <a href="#" class="signInBtn-link">Connectez-vous</a></p>
