@@ -11,31 +11,40 @@
 			error_log("login.php Alpha");
 
 			// Data processing
-			$host = "localhost";
+			$host = "camagru-postgres-1";
 			$port = $_ENV['DB_PORT'];
 			$dbname = $_ENV['DB_NAME'];
 			$user = $_ENV['DB_USER'];
 			$password = $_ENV['DB_PASSWORD'];
 			$connection_string = "host=$host port=$port dbname=$dbname user=$user password=$password";
 			
-			error_log("bonjour test log");
+			error_log("connection_string : " . $connection_string);
 			$conn = pg_connect($connection_string);
 			error_log(print_r($conn, true));
-			
 
 			if (!$conn) {
-				error_log("Connexion impossible");
-			} else {
-				error_log("Connexion REUSSIS");
-				
-				// Answer
+				error_log("Error login.php: DB access");
+				http_response_code(400);
 				$response = array(
-					"success" => true, 
-					"message" => "Connexion réussie bien jouer!"
+					"success" => false,
+					"message" => "Error database access login"
 				);
+				error_log("Error DB access login.php");
 				header('Content-Type: application/json');
 				echo json_encode($response);
+				exit;
 			}
+			error_log("Connexion REUSSIS");
+			// TODO player exist? + connected
+
+				
+			// Answer
+			$response = array(
+				"success" => true, 
+				"message" => "Connexion réussie bien jouer!"
+			);
+			header('Content-Type: application/json');
+			echo json_encode($response);
 	} else {
 		error_log("Request != POST");
 		error_log($_SERVER["REQUEST_METHOD"]);

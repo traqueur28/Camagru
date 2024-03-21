@@ -86,6 +86,10 @@ body {
 	transform: translateX(-60%);
 }
 
+.form-wrapper .btn:hover {
+	background: rgb(0, 0, 0, 0.30);
+}
+
 .form-wrapper p {
 	padding: 15px 0;
 	font-weight: bold;

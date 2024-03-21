@@ -12,7 +12,7 @@ signInBtnLink.addEventListener('click', () => {
 	wrapper.classList.toggle("active");
 })
 
-// POST login form
+/* --- POST login form --- */
 document.getElementById("loginForm").addEventListener('submit', function(event) {
 	event.preventDefault();
 	// Get data from form
@@ -48,4 +48,41 @@ document.getElementById("loginForm").addEventListener('submit', function(event) 
 		.catch(error => {
 			console.log("echec");
 		})
+})
+
+/* --- POST register form --- */
+document.getElementById("registerForm").addEventListener('click', function(event) {
+	event.preventDefault();
+	// Get data from form
+	const email = document.getElementById('emailId').value;
+	const username = document.getElementById('registerId').value;
+	const password = document.getElementById('passwordIdRegister').value;
+
+	const data = {
+		email : email,
+		username : username,
+		password : password
+	};
+	const option = {
+		method: 'POST',
+		headers: {
+			'Content-Type' : 'application/json',
+		},
+		body: JSON.stringify(data),
+	};
+	fetch('http://localhost/register.php', option)
+	.then(response => {
+		if (!response.ok)
+			throw new Error('Réponse réseau incorrecte');	
+		return response.json();
+	})
+	.then(data => {
+		console.log(`Reussite:`);
+		console.log(data); // Affichez les données dans la console par exemple
+	})
+	.catch(error => {
+		console.log("echec");
+	})
+
+
 })
