@@ -51,7 +51,7 @@ document.getElementById("loginForm").addEventListener('submit', function(event) 
 })
 
 /* --- POST register form --- */
-document.getElementById("registerForm").addEventListener('click', function(event) {
+document.getElementById("registerForm").addEventListener('submit', function(event) {
 	event.preventDefault();
 	// Get data from form
 	const email = document.getElementById('emailId').value;

@@ -41,7 +41,7 @@
 			// Answer
 			$response = array(
 				"success" => true, 
-				"message" => "Connexion réussie bien jouer!"
+				"message" => "SuccessLogin"
 			);
 			header('Content-Type: application/json');
 			echo json_encode($response);
