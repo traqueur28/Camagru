@@ -37,26 +37,24 @@ All captured images should be public, likeables and commentable.</p>
 </ul>
 
 <h2>Check list</h2>
-  <ul>
-    <li>Login/Register</li>
+    <h3>Login/Register</h3> 
     
   - [x] Request login/register.
   - [ ] Password forget.
   - [ ] Send Email when register.
   - [x] Hash password.
   - [ ] Cookies.
-
-    <li>Pictures</li>
-
+        
+    <h3>Pictures</h3>
+    
   - [ ] Take picture.
   - [ ] Post picture.
   - [ ] Remove picture
   - [ ] Like and comment pictures.
 
-    <li>Users</li>
-
+    <h3>Users</h3>
+    
   - [ ] Modify Password.
   - [ ] Modify Username.
   - [ ] Modify Email.
           
-  </ul>
