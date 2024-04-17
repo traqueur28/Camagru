@@ -1,3 +1,4 @@
 .env
 php.conf
 init.sql
+priv*

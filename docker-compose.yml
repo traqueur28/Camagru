@@ -4,10 +4,14 @@ services:
     image: nginx:latest
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - ./front:/usr/share/nginx/html
       - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./priv-cert-nginx:/etc/nginx/certs
     restart: always
+    depends_on:
+      - backend
 
   backend:
     build:
