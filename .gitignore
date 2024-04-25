@@ -2,3 +2,4 @@
 php.conf
 init.sql
 priv*
+mail.php

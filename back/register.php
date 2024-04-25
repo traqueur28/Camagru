@@ -1,6 +1,8 @@
 <?php
 	require_once('tools/sendHttpResponse.php');
 	require_once('tools/connectDataBase.php');
+	require_once('class/user.php');
+
 
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		error_log("Register.php : POST");
@@ -21,27 +23,49 @@
 				sendHttpResponse(400, $response);
 		}
 		
-
 		// Check doesn't already exist :
-		// Connect to DB
-		$conn = connectDataBase();
-
-		$query = "SELECT * FROM utilisateurs WHERE email='$email' or nom='$username'";
-		$res = pg_query($conn, $query);
-		if (pg_num_rows($res) > 0) {
-			// Check User exist
+		if (User::isInDatabase($username)) {
 			error_log("Register.php : Already Exist");
 			$response = array(
 				"success" => false,
-				"message" => "ErrorUserAlreadyUsed"
+				"message" => "Error: UserAlreadyUsed"
 			);
 			sendHttpResponse(400, $response);
+			exit();
 		}
+
 		// doesn't exist -> create new user + good response
-		error_log("register.php : add user");
-		$password = password_hash($password, PASSWORD_DEFAULT);
-		$query = "INSERT INTO utilisateurs (nom, pwd, email) VALUES ('$username', '$password', '$email');";
-		$res = pg_query($conn, $query);
+		if (!User::addInDatabase($username, $password, $email)) {
+			error_log("Register.php : Error addNewUser");
+			$response = array(
+				"success" => false,
+				"message" => "Error: AddNewUser"
+			);
+			sendHttpResponse(400, $response);
+			exit();
+		}
+
+		// Send Mail
+		//*  ----- TODO mailing ----- */
+		// error_log("send mail");
+
+		// $headers .= "Content-Type: text/plain; charset=utf-8\r\n";
+
+		// $message = "Merci $username pour votre inscription sur Camagru.\r\n";
+		// $sendmail = mail(
+		// 	$email,
+		// 	"Registration CAMAGRU",
+		// 	$message
+		// );
+		// error_log("SUB MAILING");
+		// if ($sendmail) {
+		// 	error_log("L'e-mail a été accepté pour la livraison.");
+		// } else {
+		// 	error_log("L'e-mail n'a pas été accepté pour la livraison.");
+		// }
+		/* ------------------------ */
+
+		// Response
 		$response = array(
 			"success" => true, 
 			"message" => "SuccessRegister"
@@ -50,7 +74,7 @@
 	}
 
 
-	function checkInput($str, $minLen, $maxLen, $majNum) {
+	function checkInput($str, $minLen, $maxLen, $majNum): bool {
 		if (ctype_alnum($str)
 		 && strlen($str) <= $maxLen && strlen($str) >= $minLen
 		 && preg_match_all('/[A-Z]/', $str) >= $majNum

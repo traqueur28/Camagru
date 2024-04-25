@@ -35,7 +35,7 @@ document.getElementById("loginForm").addEventListener('submit', function(event) 
 	}
 	console.log(option);
 	// Fetch post
-	fetch("http://localhost/login.php", option)
+	fetch("https://www.camagru42.fr/login.php", option)
 		.then(response => {
 			if (!response.ok)
 				throw new Error('Réponse réseau incorrecte');	
@@ -70,7 +70,7 @@ document.getElementById("registerForm").addEventListener('submit', function(even
 		},
 		body: JSON.stringify(data),
 	};
-	fetch('http://localhost/register.php', option)
+	fetch('https://www.camagru42.fr/register.php', option)
 	.then(response => {
 		if (!response.ok)
 			throw new Error('Réponse réseau incorrecte');	
